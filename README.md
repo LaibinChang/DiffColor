@@ -5,7 +5,8 @@ Raw underwater images often suffer from significant visual degradation, which li
 
 ![image](https://github.com/LaibinChang/UFDM/assets/88143736/c51aaf17-c600-4d39-9bc0-ed3deea7f366)
 
-
+## Keywords
+Efficient diffusion model; Underwater image restoration; Global color correction; High-frequency detail refinement.
 ## Requirement
 
 ## Train
