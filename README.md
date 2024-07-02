@@ -8,9 +8,93 @@ Raw underwater images often suffer from significant visual degradation, which li
 ## Keywords
 Efficient diffusion model; Underwater image restoration; Global color correction; High-frequency detail refinement.
 ## Requirement
-
+* Python 3.8
+* Pytorch 2.0.1
+* CUDA 11.7
+```bash
+pip install -r requirements.txt
+```
+## Test
+You can directly test the performance of the pre-trained model as follows:
+1. Modify the paths to dataset and pre-trained model. You need to modify the following path in the `configs/UFDM_config.json` 
+```python
+test_dataset # testing dataset path
+ckpt_dir # pre-trained maode path
+```
+2. Test the model
+```python
+python evaluate.py
+```
+We use the DDIM sampling to speed up the inference stage. The number of steps is set as 10.
+```python
+--sampling_timesteps = 10
+```
 ## Train
+1. Download underwater datasets and set the following structure
+```
+|-- WaterDatasets
+    |-- train
+        |-- input # raw underwater images
+        |-- target # reference images
+        |-- WaterDatasets_train.txt # image information
+    |-- val
+        |-- input # raw underwater images
+        |-- target # reference images
+        |-- WaterDatasets_val.txt # image information
+```
+2. Run the following to generate a .txt file based on the datasets.
+```python
+# generate WaterDatasets_train.txt and WaterDatasets_val.txt
+import os
+img_folder = "WaterDatasets/train/input/"
+paths = []
+for root, _, names in os.walk(img_folder):
+    for name in names:
+        path = os.path.join(root, name)
+        path_gt = path.replace('input', 'target')
+        if os.path.exists(path_gt):
+            paths.append(path)
+        else:
+            paths.append(path)
+            print(f"No corresponding file for {path}")
+save_path = "WaterDatasets_train.txt"
+with open(save_path, 'w') as f:
+    for p1 in paths:
+        f.write(f"{p1}\n")
+```
+2. You need to modify the following path in the `configs/UFDM_config.json` 
+```python
+data: 
+    train_dataset: "WaterDatasets" # dataset path
+    val_dataset: "WaterDatasets"
+    test_dataset: "WaterDatasets"
+    patch_size: 256
+    channels: 3
+    num_workers: 4
+    data_dir: "datasets/"
+    ckpt_dir: "ckpt/" # dataset path
+    conditional: True 
+training:
+    batch_size: 16
+    n_epochs: 500
+    validation_freq: 1000
+optim:
+    weight_decay: 0.000
+    optimizer: "Adam"
+    lr: 0.0001
+    amsgrad: False
+    eps: 0.00000001
+    step_size: 50
+    gamma: 0.8
+```
+3. train the model
+```python
+python train.py
+```
+We use the DDIM sampling to speed up the inference stage. The number of steps is set as 10.
+```python
+--sampling_timesteps = 10 #You can revise it if need.
+```
 
-## Evaluation
-
-## References
+## Notes
+After the paper is accepted, we will upload the complete code here. Thank you for your attention!
