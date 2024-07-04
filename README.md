@@ -94,4 +94,4 @@ We use the DDIM sampling to speed up the inference stage. The number of steps is
 ```
 
 ## Notes
-After the paper is accepted, we will upload the complete code here. Thank you for your attention!
+After the paper is accepted, we will upload the complete code here. Thanks for your attention!
