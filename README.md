@@ -25,10 +25,7 @@ ckpt_dir # pre-trained maode path
 ```python
 python evaluate.py
 ```
-We use the DDIM sampling to speed up the inference stage. The number of steps is set as 10.
-```python
---sampling_timesteps = 10
-```
+
 ## Train
 1. Download underwater datasets and set the following structure
 ```
