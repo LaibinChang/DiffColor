@@ -14,7 +14,7 @@ Efficient diffusion model; Underwater image restoration; Global color correction
 ```bash
 pip install -r requirements.txt
 ```
-## Test
+## Testing
 You can directly test the performance of the pre-trained model as follows:
 1. Modify the paths to dataset and pre-trained model. You need to modify the following path in the `configs/UFDM_config.json` 
 ```python
@@ -26,7 +26,7 @@ ckpt_dir # pre-trained maode path
 python evaluate.py
 ```
 
-## Train
+## Training
 1. Prepare the underwater dataset and set it to the following structure:
 ```
 |-- WaterDatasets
