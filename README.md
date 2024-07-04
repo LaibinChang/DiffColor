@@ -27,7 +27,7 @@ python evaluate.py
 ```
 
 ## Train
-1. Download underwater datasets and set the following structure
+1. Prepare the underwater dataset and set it to the following structure:
 ```
 |-- WaterDatasets
     |-- train
@@ -39,7 +39,7 @@ python evaluate.py
         |-- target # reference images
         |-- WaterDatasets_val.txt # image information
 ```
-2. Run the following to generate a .txt file based on the datasets.
+2. Run the following to generate the `.txt` files based on the datasets.
 ```python
 # generate WaterDatasets_train.txt and WaterDatasets_val.txt
 import os
@@ -59,17 +59,17 @@ with open(save_path, 'w') as f:
     for p1 in paths:
         f.write(f"{p1}\n")
 ```
-2. You need to modify the following path in the `configs/UFDM_config.json` 
+3. Modify the following path in the `configs/UFDM_config.json` according to your needs:
 ```python
 data: 
-    train_dataset: "WaterDatasets" # dataset path
+    train_dataset: "WaterDatasets" # dataset name
     val_dataset: "WaterDatasets"
     test_dataset: "WaterDatasets"
     patch_size: 256
     channels: 3
     num_workers: 4
-    data_dir: "datasets/"
-    ckpt_dir: "ckpt/" # dataset path
+    data_dir: "datasets/" # dataset path
+    ckpt_dir: "ckpt/" # weight saving path
     conditional: True 
 training:
     batch_size: 16
@@ -84,13 +84,13 @@ optim:
     step_size: 50
     gamma: 0.8
 ```
-3. train the model
+4. train the model
 ```python
 python train.py
 ```
 We use the DDIM sampling to speed up the inference stage. The number of steps is set as 10.
 ```python
---sampling_timesteps = 10 #You can revise it if need.
+--sampling_timesteps = 10 #You can revise it if necessary.
 ```
 
 ## Notes
