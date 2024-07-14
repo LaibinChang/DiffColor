@@ -66,7 +66,6 @@ data:
     val_dataset: "WaterDatasets"
     test_dataset: "WaterDatasets"
     patch_size: 256
-    channels: 3
     num_workers: 4
     data_dir: "datasets/" # dataset path
     ckpt_dir: "ckpt/" # weight saving path
@@ -76,7 +75,6 @@ training:
     n_epochs: 500
     validation_freq: 1000
 optim:
-    weight_decay: 0.000
     optimizer: "Adam"
     lr: 0.0001
     amsgrad: False
