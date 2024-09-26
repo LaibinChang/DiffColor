@@ -14,17 +14,6 @@ Underwater image restoration; Efficient diffusion model; Global color correction
 ```bash
 pip install -r requirements.txt
 ```
-## Testing
-You can directly test the performance of the pre-trained model as follows:
-1. Modify the paths to dataset and pre-trained model. You need to modify the following path in the `configs/UIE.yml` 
-```python
-test_dataset # testing dataset path
-ckpt_dir # pre-trained maode path
-```
-2. Test the model
-```python
-python evaluate.py
-```
 
 ## Training
 1. Prepare the underwater dataset and set it to the following structure:
@@ -39,27 +28,9 @@ python evaluate.py
         |-- target # reference images
         |-- WaterDatasets_val.txt # image information
 ```
-2. Run the following to generate the `.txt` files based on the datasets.
-```python
-# generate WaterDatasets_train.txt and WaterDatasets_val.txt
-import os
-img_folder = "WaterDatasets/train/input/"
-paths = []
-for root, _, names in os.walk(img_folder):
-    for name in names:
-        path = os.path.join(root, name)
-        path_gt = path.replace('input', 'target')
-        if os.path.exists(path_gt):
-            paths.append(path)
-        else:
-            paths.append(path)
-            print(f"No corresponding file for {path}")
-save_path = "WaterDatasets_train.txt"
-with open(save_path, 'w') as f:
-    for p1 in paths:
-        f.write(f"{p1}\n")
-```
-3. Modify the following path in the `configs/UIE.yml` according to your needs:
+For the two `WaterDatasets_train.txt` and `WaterDatasets_val.txt`, you can run the `Img2Text.py` to generate the `.txt` files.
+
+2. Revise the following hyper parameters in the `configs/UIE.yml` according to your situation:
 ```python
 data: 
     train_dataset: "WaterDatasets" # dataset name
@@ -82,7 +53,7 @@ optim:
     step_size: 50
     gamma: 0.8
 ```
-4. train the model
+3. Begin the training
 ```python
 python train.py
 ```
@@ -91,5 +62,16 @@ Note: we use the DDIM sampling to speed up the inference stage. The number of st
 --sampling_timesteps = 10 #You can revise it if necessary.
 ```
 
+## Testing
+You can directly test the performance of the pre-trained model as follows:
+1. Modify the paths to dataset and pre-trained model. You need to revise the following path in the `configs/UIE.yml` 
+```python
+test_dataset # testing dataset path
+ckpt_dir # pre-trained maode path
+```
+2. Begin the testing
+```python
+python evaluate.py
+```
 ## Notes
 After the paper is accepted, we will upload the complete code here. Thanks for your attention!
