@@ -16,7 +16,7 @@ pip install -r requirements.txt
 ```
 ## Testing
 You can directly test the performance of the pre-trained model as follows:
-1. Modify the paths to dataset and pre-trained model. You need to modify the following path in the `configs/UFDM_config.json` 
+1. Modify the paths to dataset and pre-trained model. You need to modify the following path in the `configs/UIE.yml` 
 ```python
 test_dataset # testing dataset path
 ckpt_dir # pre-trained maode path
