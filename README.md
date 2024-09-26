@@ -63,7 +63,6 @@ Note: we use the DDIM sampling to speed up the inference stage. The number of st
 ```
 
 ## Testing
-You can directly test the performance of the pre-trained model as follows:
 1. Modify the paths to dataset and pre-trained model. You need to revise the following path in the `configs/UIE.yml` 
 ```python
 test_dataset # testing dataset path
