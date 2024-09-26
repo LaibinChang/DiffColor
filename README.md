@@ -59,7 +59,7 @@ with open(save_path, 'w') as f:
     for p1 in paths:
         f.write(f"{p1}\n")
 ```
-3. Modify the following path in the `configs/UFDM_config.json` according to your needs:
+3. Modify the following path in the `configs/UIE.yml` according to your needs:
 ```python
 data: 
     train_dataset: "WaterDatasets" # dataset name
@@ -86,7 +86,7 @@ optim:
 ```python
 python train.py
 ```
-We use the DDIM sampling to speed up the inference stage. The number of steps is set as 10.
+Note: We use the DDIM sampling to speed up the inference stage. The number of steps is set as 10.
 ```python
 --sampling_timesteps = 10 #You can revise it if necessary.
 ```
