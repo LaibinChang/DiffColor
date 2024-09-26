@@ -86,7 +86,7 @@ optim:
 ```python
 python train.py
 ```
-Note: We use the DDIM sampling to speed up the inference stage. The number of steps is set as 10.
+Note: we use the DDIM sampling to speed up the inference stage. The number of steps is set as 10.
 ```python
 --sampling_timesteps = 10 #You can revise it if necessary.
 ```
