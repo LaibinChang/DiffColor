@@ -20,13 +20,16 @@ pip install -r requirements.txt
 ```
 |-- WaterDatasets
     |-- train
-        |-- input # raw underwater images
-        |-- target # reference images
-        |-- WaterDatasets_train.txt # image information
+        |-- input  #raw underwater images
+        |-- target  #reference images
+        |-- WaterDatasets_train.txt  #image information
     |-- val
-        |-- input # raw underwater images
-        |-- target # reference images
-        |-- WaterDatasets_val.txt # image information
+        |-- input
+        |-- target
+        |-- WaterDatasets_val.txt
+    |-- test
+        |-- input
+        |-- WaterDatasets_test.txt
 ```
 For the two `WaterDatasets_train.txt` and `WaterDatasets_val.txt`, you can run the `Img2Text.py` to generate the `.txt` files.
 
