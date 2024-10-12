@@ -27,9 +27,6 @@ pip install -r requirements.txt
         |-- input
         |-- target
         |-- WaterDatasets_val.txt
-    |-- test
-        |-- input
-        |-- WaterDatasets_test.txt
 ```
 For the two `WaterDatasets_train.txt` and `WaterDatasets_val.txt`, you can run the `Img2Text.py` to generate the `.txt` files.
 
