@@ -16,7 +16,7 @@ pip install -r requirements.txt
 ```
 
 ## Training
-1. Prepare the underwater dataset and set it to the following structure:
+1. Prepare the underwater dataset and set it to the following structure.
 ```
 |-- WaterDatasets
     |-- train
@@ -30,30 +30,9 @@ pip install -r requirements.txt
 ```
 For the two `WaterDatasets_train.txt` and `WaterDatasets_val.txt`, you can run the `Img2Text.py` to generate the `.txt` files.
 
-2. Revise the following hyper parameters in the `configs/UIE.yml` according to your situation:
-```python
-data: 
-    train_dataset: "WaterDatasets" # dataset name
-    val_dataset: "WaterDatasets"
-    test_dataset: "WaterDatasets"
-    patch_size: 256
-    num_workers: 4
-    data_dir: "datasets/" # dataset path
-    ckpt_dir: "ckpt/" # weight saving path
-    conditional: True 
-training:
-    batch_size: 16
-    n_epochs: 500
-    validation_freq: 1000
-optim:
-    optimizer: "Adam"
-    lr: 0.0001
-    amsgrad: False
-    eps: 0.00000001
-    step_size: 50
-    gamma: 0.8
-```
-3. Begin the training
+2. Revise the following hyper parameters in the `configs/UIE.yml` according to your situation.
+
+3. Begin the training.
 ```python
 python train.py
 ```
@@ -63,12 +42,12 @@ Note: we use the DDIM sampling to speed up the inference stage. The number of st
 ```
 
 ## Testing
-1. Modify the paths to dataset and pre-trained model. You need to revise the following path in the `configs/UIE.yml` 
+1. Modify the paths to dataset and pre-trained model. You need to revise the following path in the `configs/UIE.yml` .
 ```python
 test_dataset # testing dataset path
 ckpt_dir # pre-trained maode path
 ```
-2. Begin the testing
+2. Begin the testing.
 ```python
 python evaluate.py
 ```
