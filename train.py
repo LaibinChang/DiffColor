@@ -12,10 +12,10 @@ import models
 import datasets
 import utils
 from models import DenoisingDiffusion
-
+#os.environ["CUDA_VISIBLE_DEVICES"] = '0,1'
 def parse_args_and_config():
     parser = argparse.ArgumentParser(description='Training Wavelet-Based Diffusion Model')
-    parser.add_argument("--config", default='UIE.yml', type=str,
+    parser.add_argument("--config", default='Config.yml', type=str,
                         help="Path to the config file")
     parser.add_argument('--resume', default='', type=str,
                         help='Path for checkpoint to load and resume')
@@ -30,9 +30,7 @@ def parse_args_and_config():
     with open(os.path.join("configs", args.config), "r") as f:
         config = yaml.safe_load(f)
     new_config = dict2namespace(config)
-
     return args, new_config
-
 
 def dict2namespace(config):
     namespace = argparse.Namespace()
@@ -43,7 +41,6 @@ def dict2namespace(config):
             new_value = value
         setattr(namespace, key, new_value)
     return namespace
-
 
 def main():
     args, config = parse_args_and_config()
@@ -65,10 +62,19 @@ def main():
     DATASET = datasets.__dict__[config.data.type](config)
 
     # create model
-    print("=> creating denoising-diffusion model...")
+    print("=> creating diffusion model...")
     diffusion = DenoisingDiffusion(args, config)
     diffusion.train(DATASET)
 
-
 if __name__ == "__main__":
     main()
+    """
+    try:
+        main()
+    except KeyboardInterrupt:
+        print('\nKeyboardInterrupt: Training interrupted by the user.')
+    except Exception as e:
+        print(f'\nAn error occurred: {e}')
+    finally:
+        print('Cleaning up and exiting...')"""
+

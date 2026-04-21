@@ -1,6 +1,6 @@
 import os
 
-img_folder = "WaterDatasetsSmall/train/input/"
+img_folder = "datasets/UIEB/test/input/"
 paths = []
 
 for root, _, names in os.walk(img_folder):
@@ -13,7 +13,7 @@ for root, _, names in os.walk(img_folder):
             paths.append(path)
             print(f"No corresponding file for {path}")
 
-save_path = "WaterDatasetsLSUI_test.txt"
+save_path = "datasets/UIEB/test/UIEB_test.txt"
 with open(save_path, 'w') as f:
     for p1 in paths:
         f.write(f"{p1}\n")
